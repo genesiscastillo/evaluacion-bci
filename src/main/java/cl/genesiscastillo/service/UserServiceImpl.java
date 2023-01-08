@@ -66,9 +66,9 @@ public class UserServiceImpl implements UserService  {
 	public Optional<User> findByEmail(String email) throws NotFoundUserByEmailException {
 		log.info("findByEmail: {}", email);		
 		User user = userRepsoitory.findByEmail(email);
-		if( user == null) {
+		log.info("user: {}", user);
+		if(user == null )
 			throw new NotFoundUserByEmailException(email);
-		}
 		return Optional.of(user);
 	}
 

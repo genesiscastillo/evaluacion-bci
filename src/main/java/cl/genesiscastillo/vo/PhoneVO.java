@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import cl.genesiscastillo.entity.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class PhoneVO {
 	
 	@JsonProperty(required = true)

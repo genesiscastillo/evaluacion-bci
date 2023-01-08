@@ -3,7 +3,6 @@ package cl.genesiscastillo.controller;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cl.genesiscastillo.entity.Phone;
 import cl.genesiscastillo.entity.User;
+import cl.genesiscastillo.exception.NotFoundUserByEmailException;
 import cl.genesiscastillo.service.UserService;
 import cl.genesiscastillo.vo.PhoneVO;
 import cl.genesiscastillo.vo.UserVO;
@@ -52,12 +53,20 @@ class UserControllerTest {
 	@Test
 	void testPostUser() throws Exception {
 		Collection<PhoneVO> phoneVOs = new ArrayList<PhoneVO>();
-		phoneVOs.add(new PhoneVO(PHONE_NUMBER, PHONE_CITY_CODE, PHONE_COUNTRY_CODE));
+		PhoneVO phoneVO = new PhoneVO(PHONE_NUMBER, PHONE_CITY_CODE, PHONE_COUNTRY_CODE);
+		Assertions.assertNotNull(phoneVO);
+		Assertions.assertNotNull(phoneVO.getCitycode());
+		Assertions.assertNotNull(phoneVO.getCountrycode());
+		Assertions.assertNotNull(phoneVO.getNumber());
+		
+		phoneVOs.add(phoneVO);
+		
 		UserVO userVO = new UserVO();
 		userVO.setEmail(USER_EMAIL);
 		userVO.setName(USER_NAME);
 		userVO.setPassword(USER_PASSWORD);
 		userVO.setPhones( phoneVOs );
+		Assertions.assertNotNull(userVO.getPassword());
 		
 		User user = new User(USER_NAME, USER_EMAIL, USER_PASSWORD, USER_TOKEN, USER_PHONES);		
 		
@@ -67,10 +76,9 @@ class UserControllerTest {
 			.perform(
 				post("/api/users")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(userVO))
+				.content(objectMapper.writeValueAsBytes(userVO))
 			)
-			.andExpect(status().isCreated())
-			.andDo(print());
+			.andExpect(status().isCreated());
 	}
 
 	@Test
@@ -87,9 +95,7 @@ class UserControllerTest {
 
 	@Test
 	void testGetUserNUll() throws Exception {
-		Optional<User> optional = Optional.empty(); 
-		
-		given(userServiceMocked.findByEmail("cepija6292@kaftee.com")).willReturn(optional);
+		given(userServiceMocked.findByEmail("cepija6292@kaftee.com")).willThrow(NotFoundUserByEmailException.class);
 		
 		this.mockMvc.perform(get("/api/users?email=cepija6292@kaftee.com"))
 		.andExpect(status().isNoContent());

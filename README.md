@@ -101,6 +101,10 @@ mvn org.owasp:dependency-check-maven:7.4.4:check
 ```
 ![dependency](./data/img/dependency.png)
 
+## Testing and Coverage Code
+
+![coverage](./data/img/coverage.png)
+
 ---
 
 ## Versions

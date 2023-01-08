@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import cl.genesiscastillo.entity.Phone;
 import cl.genesiscastillo.entity.User;
+import cl.genesiscastillo.exception.NotFoundUserByEmailException;
 import cl.genesiscastillo.repository.PhoneRepository;
 import cl.genesiscastillo.repository.UserRepository;
 
@@ -23,7 +24,7 @@ public class UserServiceImplTest {
 	static final Collection<Phone> USER_PHONES = Collections.emptyList();
 
 	@Test
-	void testUserService() {
+	void testUserService() throws Exception {
 		UserRepository userRepository = Mockito.mock(UserRepository.class);
 		PhoneRepository phoneRepository = Mockito.mock(PhoneRepository.class);
 		
@@ -33,13 +34,11 @@ public class UserServiceImplTest {
 		userServiceImpl.setPhoneRepository(phoneRepository);
 		userServiceImpl.setUserRepsoitory(userRepository);
 		
-		Optional<User> optional = userServiceImpl.findByEmail("email");
-		
-		Assertions.assertFalse(optional.isPresent());
+		Assertions.assertThrows(NotFoundUserByEmailException.class  , ()-> userServiceImpl.findByEmail("email"));
 	}
 	
 	@Test
-	void testUserService2() {
+	void testUserService2() throws Exception {
 		UserRepository userRepository = Mockito.mock(UserRepository.class);
 		PhoneRepository phoneRepository = Mockito.mock(PhoneRepository.class);
 		User user = new User(USER_NAME, USER_EMAIL, USER_PASSWORD, USER_TOKEN, USER_PHONES);

@@ -22,17 +22,10 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler(NotFoundUserByEmailException.class)
-	public ResponseEntity<Object> handleNotFoundUserByEmailException(NotFoundUserByEmailException ex, WebRequest request) {
+	public ResponseEntity<Object> handleNotFoundByEmailException(NotFoundUserByEmailException ex, WebRequest request) {
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("message", ex.getMessage());
-		return new ResponseEntity<>(body , HttpStatus.NO_CONTENT);
-	}
-	
-	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("message", ex.getMessage());
-		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(body, HttpStatus.NO_CONTENT);
 	}
 
 	@ExceptionHandler(Exception.class)
