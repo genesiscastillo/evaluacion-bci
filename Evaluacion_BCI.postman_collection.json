@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "75af9ea4-d288-40ea-9cf5-9612d2f6ef9f",
+		"name": "Evaluacion BCI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3987612"
+	},
+	"item": [
+		{
+			"name": "Get User By Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/users?email=nfound@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "nfound@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cesar\",\r\n    \"email\": \"abc11@gmail.com\",\r\n    \"password\": \"abc1234\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"741258963\",\r\n            \"citycode\": \"963\",\r\n            \"countrycode\": \"CL08\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
