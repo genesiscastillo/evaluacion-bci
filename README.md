@@ -50,8 +50,33 @@ java -jar target\app.jar
 ![deploy](./data/img/deploy.png)
 
 
-That's it. Your application should start up on port **8181.**
+* That's it. Your application should start up on port **8181.**
 
+* test curl : Create User 
+
+```bash
+curl --location --request POST 'http://localhost:8181/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Cesar",
+    "email": "abc11@gmail.com",
+    "password": "abc1234",
+    "phones": [
+        {
+            "number": "741258963",
+            "citycode": "963",
+            "countrycode": "CL08"
+        }
+    ]
+}'
+```
+
+* test curl : Get User by email
+```bash
+curl --location --request GET 'http://localhost:8181/api/users?email=nfound@gmail.com'
+```
+
+---
 ## Testing & Evidence
 
 ### GET: http://localhost:8181api/user
@@ -76,12 +101,18 @@ That's it. Your application should start up on port **8181.**
 ---
 # Ethical Hacking
 
+## Diagran Class
+
+![classdiagram](./data/img/classdiagram.png)
+
+---
 ## check health app 
 ```bash
 http://localhost:8181/actuator/health
 ```
 ![health](./data/img/health.png)
 
+---
 ## Swagger APIs Specification
 ```bash
 http://localhost:8181/swagger-ui/index.html
@@ -95,23 +126,24 @@ http://localhost:8181/v3/api-docs
 
 ![apidoc](./data/img/apidoc.png)
 
+---
 ## Check vulnerability dependecies
+
 ```bash
 mvn org.owasp:dependency-check-maven:7.4.4:check
 ```
 ![dependency](./data/img/dependency.png)
 
+---
 ## Testing and Coverage Code
 
-![coverage](./data/img/coverage.png)
+![coverage](./data/img/coverage2.png)
 
 ---
-
-
 ## Versions
 
-    * 1.0.0 : Evaluacion-Bci
+* 1.0.0 : Evaluacion-Bci
 
 ## Authors
 
-    * Cesar Castillo : genesiscastillo@hotmail.com
+* Cesar Castillo : genesiscastillo@hotmail.com
