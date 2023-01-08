@@ -33,6 +33,5 @@ build/
 .vscode/
 
 ### DEFINIED BY DEVELOPER
-data
 deploy.cmd
 .mvn

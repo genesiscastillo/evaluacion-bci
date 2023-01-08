@@ -15,7 +15,7 @@
 
 If you want to skip the creation steps you can clone the finished sample (without memcache backed session):
 
-    $ 
+    $ git clone https://github.com/genesiscastillo/evaluacion-bci.git
 
 ---
 # Run your Application
@@ -30,15 +30,48 @@ mvn test
 mvn clean package install
 ```
 
-* And then run your app using the java command:
+* Similar to the previous approach, it is possible to assign values to properties from the environment
+in your `application.properties` file.
+
 ```bash
-java -jar target/app.jar
+app.security.jwt.secretKey=${APP_SECURITY_JWT_SECRET_KEY:mySecretKey}
+app.security.jwt.expirationTime=${APP_SECURITY_JWT_EXPIRATION_TIME:86400} 
 ```
 
-* 
+* And run your app as follows.
+
+```bash
+APP_SECURITY_JWT_SECRET_KEY=secretKey123
+APP_SECURITY_JWT_EXPIRATION_TIME=600
+
+java -jar target\app.jar
+```
+
+![deploy](./data/img/deploy.png)
 
 
-That's it. Your application should start up on port 8181.
+That's it. Your application should start up on port **8181.**
+
+## Testing & Evidence
+
+### GET: http://localhost:8181api/user
+
+* Creating a User
+![test1](./data/img/postman1.png)
+
+* Conflict in Creation of User
+![test2](./data/img/postman2.png)
+
+* Error en request
+![test3](./data/img/postman3.png)
+
+### POST: http://localhost:8181api/user?email=abc@gmail.com
+
+* Get User by email OK
+![test4](./data/img/postman4.png)
+
+* Get Uset bye email no found
+![test5](./data/img/postman5.png)
 
 ---
 # Ethical Hacking

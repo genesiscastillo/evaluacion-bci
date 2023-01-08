@@ -3,9 +3,10 @@ package cl.genesiscastillo.vo;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import cl.genesiscastillo.entity.Phone;
 import cl.genesiscastillo.entity.User;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,15 +17,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserVO {
 
-	@NotEmpty(message = "The name is required.")
+	@JsonProperty(required = true)
 	private String name;
 	
-	@NotEmpty(message = "The email is required.")
+	@JsonProperty(required = true)
 	private String email;
 	
-	@NotEmpty(message = "The password is required.")
+	@JsonProperty(required = true)
 	private String password;
 	 
+	@JsonProperty(required = true)
 	private Collection<PhoneVO> phones = new ArrayList<PhoneVO>();
 	
 	public User toUser(String token , Collection<Phone> phones) {

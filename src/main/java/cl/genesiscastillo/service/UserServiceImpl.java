@@ -17,6 +17,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import cl.genesiscastillo.entity.Phone;
 import cl.genesiscastillo.entity.User;
+import cl.genesiscastillo.exception.NotFoundUserByEmailException;
 import cl.genesiscastillo.repository.PhoneRepository;
 import cl.genesiscastillo.repository.UserRepository;
 import cl.genesiscastillo.vo.UserVO;
@@ -62,10 +63,13 @@ public class UserServiceImpl implements UserService  {
 	}
 
 	@Override
-	public Optional<User> findByEmail(String email) {
+	public Optional<User> findByEmail(String email) throws NotFoundUserByEmailException {
+		log.info("findByEmail: {}", email);		
 		User user = userRepsoitory.findByEmail(email);
-		Optional<User> optional = user == null ? Optional.empty() : Optional.of(user);
-		return optional;
+		if( user == null) {
+			throw new NotFoundUserByEmailException(email);
+		}
+		return Optional.of(user);
 	}
 
 	protected String getToken(@NotNull String username , @NotNull String email) {
