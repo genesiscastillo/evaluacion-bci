@@ -69,27 +69,32 @@ java -jar target\app.jar
 
 * test curl : Create User 
 
-```bash
-curl --location --request POST 'http://localhost:8181/api/users' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "Cesar",
-    "email": "abc11@gmail.com",
-    "password": "abc1234",
-    "phones": [
-        {
-            "number": "741258963",
-            "citycode": "963",
-            "countrycode": "CL08"
-        }
-    ]
-}'
-```
+    ```bash
+    curl --location --request POST 'http://localhost:8181/api/users' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "name": "Cesar",
+        "email": "abc11@gmail.com",
+        "password": "abc1234",
+        "phones": [
+            {
+                "number": "741258963",
+                "citycode": "963",
+                "countrycode": "CL08"
+            }
+        ]
+    }'
+    ```
 
 * test curl : Get User by email
-```bash
-curl --location --request GET 'http://localhost:8181/api/users?email=nfound@gmail.com'
-```
+    ```bash
+    curl --location --request GET 'http://localhost:8181/api/users?email=nfound@gmail.com'
+    ```
+
+* test curl: Get All Users
+    ```bash
+    curl --location --request GET 'http://localhost:8181/api/users/'
+    ```
 
 ---
 ## Testing & Evidence
