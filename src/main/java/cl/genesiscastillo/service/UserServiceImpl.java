@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService  {
 		log.info("add user {}", user);		
 		return user;
 	}
+	
+	@Override
+	public List<User> findAllUser(){
+		return userRepsoitory.findAll();
+	}
 
 	@Override
 	public Optional<User> findByEmail(String email) throws NotFoundUserByEmailException {

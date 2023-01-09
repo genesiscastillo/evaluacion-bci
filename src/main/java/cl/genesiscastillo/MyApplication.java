@@ -9,14 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
-
 import cl.genesiscastillo.entity.User;
 import cl.genesiscastillo.service.UserService;
 import cl.genesiscastillo.service.UserServiceImpl;
 import cl.genesiscastillo.vo.PhoneVO;
 import cl.genesiscastillo.vo.UserVO;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "User Registration API", version = "2.0", description = "Regsitro de Usuario - Generacion Token"))

@@ -1,7 +1,9 @@
 package cl.genesiscastillo.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -53,4 +55,20 @@ public class UserServiceImplTest {
 		Assertions.assertTrue(optional.isPresent());
 	}
 	
+	@Test
+	void testUserService3() throws Exception {
+		UserRepository userRepository = Mockito.mock(UserRepository.class);
+		PhoneRepository phoneRepository = Mockito.mock(PhoneRepository.class);
+
+		Mockito.when(userRepository.findAll()).thenReturn(new ArrayList<>());
+
+		UserServiceImpl userServiceImpl = new UserServiceImpl();
+		userServiceImpl.setPhoneRepository(phoneRepository);
+		userServiceImpl.setUserRepsoitory(userRepository);
+		
+		List<User> users = userServiceImpl.findAllUser();
+		
+		Assertions.assertTrue(users.isEmpty());
+	}
+
 }

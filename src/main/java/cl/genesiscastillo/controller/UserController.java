@@ -1,5 +1,6 @@
 package cl.genesiscastillo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+
+	@GetMapping("/")
+	public ResponseEntity<List<User>> getAllUser() throws NotFoundUserByEmailException {
+		return ResponseEntity.ok(userService.findAllUser());
+	}
 
 	@GetMapping
 	public ResponseEntity<User> getUser(@RequestParam("email") String email) throws NotFoundUserByEmailException {

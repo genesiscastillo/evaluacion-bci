@@ -9,7 +9,18 @@
 
 ## Prerequisites
 
-* Strong knowledge in development with Java 17, Spring Framework and SpringBoot bootstrap, including an installed version of the JVM and Maven.
+* Strong knowledge in development with Java 17, Spring Framework and SpringBoot bootstrap.
+* Including an installed version of the JVM (openjdk17) and Maven (3.8.+).
+
+* The project has been developed with the following frameworks:
+    - SpringBoot 3.0.1
+    - Spring JPA
+    - Spring Actuator
+    - HSQLDB
+    - Java JWT
+    - Lombok
+    - SpringDOC OpenAPI
+    - JUnit 5
 
 ## Clone the source
 
@@ -37,6 +48,10 @@ in your `application.properties` file.
 app.security.jwt.secretKey=${APP_SECURITY_JWT_SECRET_KEY:mySecretKey}
 app.security.jwt.expirationTime=${APP_SECURITY_JWT_EXPIRATION_TIME:86400} 
 ```
+
+- Where:
+    * __APP_SECURITY_JWT_SECRET_KEY__ -> key name
+    * __APP_SECURITY_JWT_EXPIRATION_TIME__ -> expiration time in seconds
 
 * And run your app as follows.
 
@@ -79,7 +94,7 @@ curl --location --request GET 'http://localhost:8181/api/users?email=nfound@gmai
 ---
 ## Testing & Evidence
 
-### GET: http://localhost:8181api/user
+### POST: http://localhost:8181api/user?email=abc@gmail.com
 
 * Creating a User
 ![test1](./data/img/postman1.png)
@@ -90,13 +105,16 @@ curl --location --request GET 'http://localhost:8181/api/users?email=nfound@gmai
 * Error en request
 ![test3](./data/img/postman3.png)
 
-### POST: http://localhost:8181api/user?email=abc@gmail.com
+### GET: http://localhost:8181api/user
 
 * Get User by email OK
 ![test4](./data/img/postman4.png)
 
 * Get Uset bye email no found
 ![test5](./data/img/postman5.png)
+
+* Get All User 
+![test6](./data/img/postman6.png)
 
 ---
 # Ethical Hacking

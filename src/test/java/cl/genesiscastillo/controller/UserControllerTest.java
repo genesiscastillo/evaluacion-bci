@@ -94,6 +94,15 @@ class UserControllerTest {
 	}
 
 	@Test
+	void testGetAllUser() throws Exception {
+		
+		given(userServiceMocked.findAllUser()).willReturn(new ArrayList());
+		
+		this.mockMvc.perform(get("/api/users/"))
+		.andExpect(status().isOk());
+	}
+
+	@Test
 	void testGetUserNUll() throws Exception {
 		given(userServiceMocked.findByEmail("cepija6292@kaftee.com")).willThrow(NotFoundUserByEmailException.class);
 		
