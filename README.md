@@ -99,26 +99,26 @@ java -jar target\app.jar
 ---
 ## Testing & Evidence
 
-### POST: http://localhost:8181api/user?email=abc@gmail.com
+### POST: 
 
-* Creating a User
+* Creating a User __http://localhost:8181api/users__
 ![test1](./data/img/postman1.png)
 
-* Conflict in Creation of User
+* Conflict in Creation of User __http://localhost:8181api/users__
 ![test2](./data/img/postman2.png)
 
-* Error en request
+* Error en request __http://localhost:8181api/users__
 ![test3](./data/img/postman3.png)
 
-### GET: http://localhost:8181api/user
+### GET: 
 
-* Get User by email OK
+* Get User by email __http://localhost:8181api/users?email=abc@gmail.com__
 ![test4](./data/img/postman4.png)
 
-* Get Uset bye email no found
+* Get Uset bye email __http://localhost:8181api/users?email=notfound@gmail.com__
 ![test5](./data/img/postman5.png)
 
-* Get All User 
+* Get All User __http://localhost:8181api/users/__
 ![test6](./data/img/postman6.png)
 
 ---
